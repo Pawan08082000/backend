@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Pawan08082000/backend/issues"
   },
-  "homepage": "https://github.com/Pawan08082000/backend#readme"
+  "homepage": "https://github.com/Pawan08082000/backend#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
 }
