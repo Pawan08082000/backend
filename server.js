@@ -29,11 +29,19 @@ const server = http.createServer((req, res) => {
             const message = parseBody.split('=')[1]
             console.log(parseBody.split('='))
             console.log(message)
-            fs.writeFileSync('message.txt', message)
+            // fs.writeFileSync('message.txt', message)
+            //writeFileSync blocks the code execution until the file is created
+            //So we should avoid to use writeFileSync
+            fs.writeFile('message.txt',message, (err)=>{
+                res.statusCode = 302;
+                res.setHeader('Location','/')
+                return res.end()
+            })
+
         })
-        res.statusCode = 302;
-        res.setHeader('Location','/')
-        return res.end()
+        // res.statusCode = 302;
+        //     res.setHeader('Location','/')
+        //     return res.end()
     }
 });
 
