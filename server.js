@@ -2,24 +2,14 @@ const express = require('express')
 const bodyParser = require('body-parser')
 
 const app = express()
+const adminRoute = require('./routes/admin');
 
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}))
 
-app.use('/add-product',(req, res, next) => {
-    console.log('In another middleware')
-    res.send(`<html>
-    <head>
-    <title>Pawan Tiwari</title></head>
-    <body>
-    <form action="/product" method="POST">
-    <input type='text' name='message'>
-    <button type='submit'>send</button>
-    </form></body></html>`)
-})
+app.use(adminRoute);
 
-app.use('/product',(req, res, next) => {
-    console.log(req.body)
-    res.redirect('/') //Allow the request to continue to the next middleware in line
+var server = app.listen(9000,function(){
+    var port = server.address().port;
+    console.log('Server is running on port',port);
 })
-
-app.listen(9000)
